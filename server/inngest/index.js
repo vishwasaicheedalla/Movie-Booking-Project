@@ -1,6 +1,6 @@
 import { Inngest } from "inngest";
 
-// Create a client to send and receive events
+// Client to send and receive events
 export const inngest = new Inngest({ id: "movie-ticket-booking" });
 
 // Inngest Function to save user data into database
@@ -45,9 +45,9 @@ const syncUserUpdation = inngest.createFunction(
     }
 )
 
-// Create an empty array where we'll export future Inngest functions
+// Export Inngest functions
 export const functions = [
     syncUserCreation,
     syncUserDeletion,
-    syncUserUpdation,
+    syncUserUpdation
 ];
