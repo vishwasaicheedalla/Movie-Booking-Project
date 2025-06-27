@@ -3,53 +3,43 @@ import { dummyShowsData } from '../../assets/assets';
 import Loading from '../../components/Loading';
 import Title from '../../components/admin/Title';
 import { dateFormat } from '../../lib/dateFormat';
-// import { useAppContext } from '../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
+import BlurCircle from '../../components/BlurCircle';
 
 const ListShows = () => {
 
   const currency = import.meta.env.VITE_CURRENCY
 
-  // const {axios, getToken, user} = useAppContext()
+  const { axios, getToken, user } = useAppContext()
 
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // const getAllShows = async () =>{
-  //     try {
-  //         const { data } = await axios.get("/api/admin/all-shows", {
-  //             headers: { Authorization: `Bearer ${await getToken()}` }
-  //         });
-  //         setShows(data.shows)
-  //         setLoading(false);
-  //     } catch (error) {
-  //         console.error(error);
-  //     }
-  // }
-
-  const getAllShows = () => {
-    setShows([{
-      movie : dummyShowsData[0],
-      showDateTime : "2025-06-30T02:30:00.000Z",
-      showPrice : 250,
-      occupiedSeats : {
-        A1 : "user_1",
-        A2 : "user_2",
-        A3 : "user_3"
-      }
-    }]);
-    setLoading(false);
-  };
+  const getAllShows = async () => {
+    try {
+      const { data } = await axios.get("/api/admin/all_shows", {
+        headers: { Authorization: `Bearer ${await getToken()}` }
+      });
+      setShows(data.shows)
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
   useEffect(() => {
-    getAllShows();
-  }, []);
+    if (user) {
+      getAllShows();
+    }
+  }, [user]);
 
   return !loading ? (
     <>
       <Title text1="List" text2="Shows" />
 
       <div className="max-w-4xl mt-6 overflow-x-auto">
+        <BlurCircle top="50px" right="170px" />
         <table className="w-full border-collapse rounded-md overflow-hidden text-nowrap">
           <thead>
             <tr className="bg-red-500/20 text-left text-white">
