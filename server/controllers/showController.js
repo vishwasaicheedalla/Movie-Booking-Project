@@ -18,7 +18,7 @@ export const getNowPlayingMovies = async (req, res) => {
     }
 }
 
-// // API to add a new show to database
+// API to add a new show to database
 export const addShow = async (req, res) => {
     try {
         const { movieId, showsInput, showPrice } = req.body
