@@ -29,7 +29,7 @@ const Navbar = () => {
       </div>
 
       <div className='flex items-center gap-8'>
-        <SearchIcon className='max-md:hidden w-6 h-6 cursor-pointer' />
+        {user ? <Link className='px-4 py-2 bg-black/100 hover:bg-black/70 transition rounded-full font-bold cursor-pointer' onClick={() => { scrollTo(0, 0) }} to='/admin'>Admin</Link> : null}
         {
           !user ? (<button onClick={openSignIn} className='px-4 py-1 sm:px-5 sm:py-2 bg-red-500/100 hover:bg-red-500/70 transition rounded-full font-medium cursor-pointer'>Login</button>
           ) : (
