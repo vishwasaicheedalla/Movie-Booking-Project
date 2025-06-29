@@ -16,7 +16,7 @@ const ListBookings = () => {
 
   const getAllBookings = async () => {
     try {
-      const { data } = await axios.get("/api/admin/all_bookings", {
+      const { data } = await axios.get("/api/admin/all-bookings", {
         headers: { Authorization: `Bearer ${await getToken()}` }
       });
       setBookings(data.bookings)
